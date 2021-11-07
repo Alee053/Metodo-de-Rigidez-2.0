@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import Tab from "../components/templates/Tab";
+import Tab from "../../components/templates/Tab";
 export default function NavbarVigas() {
   return (
     <nav className='w-screen bg-gradient-to-l from-indigo-700 to-blue-500 border-b-2 grid grid-cols-min-2 items-center'>

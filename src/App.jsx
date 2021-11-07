@@ -5,7 +5,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import VigasSection from "./main-sections/VigasSection";
+import VigasMain from "./VIGAS/VigasMain";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           <h1>Home</h1>
         </Route>
         <Route path='/vigas'>
-          <VigasSection />
+          <VigasMain />
         </Route>
         <Route path='*'>
           <Redirect to='/home' />

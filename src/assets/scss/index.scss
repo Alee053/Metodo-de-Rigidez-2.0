@@ -2,8 +2,28 @@
 @import "../../../node_modules/tailwindcss/components.css";
 @import "../../../node_modules/tailwindcss/utilities.css";
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-
+@import "./components/table.scss";
 * {
   font-family: "Poppins", sans-serif;
   color: white;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: darken(#fff, 20);
 }

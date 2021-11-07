@@ -1,0 +1,20 @@
+table {
+  border: white solid;
+  border-collapse: separate;
+  border-width: 0.15rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  border-spacing: 0.5rem;
+}
+th {
+  font-size: larger;
+}
+td,
+th {
+  text-align: center;
+  height: 5rem;
+  width: 5rem;
+  border: solid white;
+  border-width: 0.15rem;
+  border-radius: 1rem;
+}

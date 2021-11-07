@@ -1,10 +1,10 @@
 import { Route, Switch } from "react-router-dom";
 
-import NavbarVigas from "../sections/NavbarVigas";
-import Footerbar from "../sections/Footerbar";
-import SeccionBarras from "../sections/SeccionBarrasVigas";
+import NavbarVigas from "./components/NavbarVigas";
+import Footerbar from "../components/Footerbar";
+import SeccionBarras from "./sections/SeccionBarrasVigas";
 
-export default function VigasSection() {
+export default function VigasMain() {
   return (
     <div className='grid grid-rows-min-3 h-full'>
       <NavbarVigas />
