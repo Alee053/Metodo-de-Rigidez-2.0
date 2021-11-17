@@ -1,15 +1,19 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 
 import { Bar } from "../js/BarVigas";
 import Button from "../../components/templates/Button";
 import Input from "../../components/templates/Input";
+
+import { VigasContext } from "../VigasMain";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 import { round } from "../../js/Utility";
 
-export default function SingleBarVigas({ bar = new Bar() }) {
+export default function SingleBarVigas({ bar = new Bar(), id }) {
+  const { setMainData, MainData } = useContext(VigasContext);
+
   const [E, setE] = useState(bar.E);
   const [I, setI] = useState(bar.I);
   const [L, setL] = useState(bar.L);
@@ -30,7 +34,7 @@ export default function SingleBarVigas({ bar = new Bar() }) {
   const toggleMatrix = () => setIsOpen(!isOpen);
   const toggleEdit = () => setIsEdit(!isEdit);
 
-  //USAR TODO PRESICION GLOBAL
+  //TODO USAR PRESICION GLOBAL
   const presicion = 5;
 
   //TODO MODIFICAR ARRAY GLOBAL
@@ -64,6 +68,10 @@ export default function SingleBarVigas({ bar = new Bar() }) {
     setMatrix(newBar.matrix);
 
     bar = newBar;
+    const newBars = MainData.bars;
+    newBars[id] = { E: bar.E, I: bar.I, L: bar.L, num: bar.num };
+
+    setMainData({ ...MainData, bars: newBars });
   };
 
   return (
