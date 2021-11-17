@@ -7,6 +7,8 @@ import Input from "../../components/templates/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
+import { round } from "../../js/Utility";
+
 export default function SingleBarVigas({ bar = new Bar() }) {
   const [E, setE] = useState(bar.E);
   const [I, setI] = useState(bar.I);
@@ -28,7 +30,41 @@ export default function SingleBarVigas({ bar = new Bar() }) {
   const toggleMatrix = () => setIsOpen(!isOpen);
   const toggleEdit = () => setIsEdit(!isEdit);
 
-  const applyChanges = () => {};
+  //USAR TODO PRESICION GLOBAL
+  const presicion = 5;
+
+  //TODO MODIFICAR ARRAY GLOBAL
+  const applyChanges = () => {
+    if (!isEdit) return;
+    const iE = inputE.current.value;
+    const iI = inputI.current.value;
+    const iL = inputL.current.value;
+    const i1 = inputNum1.current.value;
+    const i2 = inputNum2.current.value;
+    const i3 = inputNum3.current.value;
+    const i4 = inputNum4.current.value;
+
+    const newBar = new Bar(
+      iE !== "" ? iE : E,
+      iI !== "" ? iI : I,
+      iL !== "" ? iL : L,
+      [
+        i1 !== "" ? i1 : num[0],
+        i2 !== "" ? i2 : num[1],
+        i3 !== "" ? i3 : num[2],
+        i4 !== "" ? i4 : num[3],
+      ],
+    );
+    newBar.solveMatrix();
+
+    setE(newBar.E);
+    setI(newBar.I);
+    setL(newBar.L);
+    setNum(newBar.num);
+    setMatrix(newBar.matrix);
+
+    bar = newBar;
+  };
 
   return (
     <div className='bg-white justify-items-center bg-opacity-10 border-2 rounded-2xl p-5 pb-0 grid grid-rows-2 place-items-center self-start relative'>
@@ -58,7 +94,12 @@ export default function SingleBarVigas({ bar = new Bar() }) {
           )}
         </h2>
         <div>
-          <Button styles='border-2' func={toggleEdit}>
+          <Button
+            styles='border-2'
+            func={() => {
+              toggleEdit();
+              applyChanges();
+            }}>
             {!isEdit ? "Editar" : "Aplicar"}
           </Button>
           <Button styles='border-2'>Eliminar</Button>
@@ -98,41 +139,43 @@ export default function SingleBarVigas({ bar = new Bar() }) {
           <div className='h-0.5 w-full bg-white' />
           <div className='p-5'>
             <table>
-              <tr>
-                <th></th>
-                <th>{num[0]}</th>
-                <th>{num[1]}</th>
-                <th>{num[2]}</th>
-                <th>{num[3]}</th>
-              </tr>
-              <tr>
-                <th>{num[0]}</th>
-                <td>{matrix[num[0]][num[0]]}</td>
-                <td>{matrix[num[0]][num[1]]}</td>
-                <td>{matrix[num[0]][num[2]]}</td>
-                <td>{matrix[num[0]][num[3]]}</td>
-              </tr>
-              <tr>
-                <th>{num[1]}</th>
-                <td>{matrix[num[1]][num[0]]}</td>
-                <td>{matrix[num[1]][num[1]]}</td>
-                <td>{matrix[num[1]][num[2]]}</td>
-                <td>{matrix[num[1]][num[3]]}</td>
-              </tr>
-              <tr>
-                <th>{num[2]}</th>
-                <td>{matrix[num[2]][num[0]]}</td>
-                <td>{matrix[num[2]][num[1]]}</td>
-                <td>{matrix[num[2]][num[2]]}</td>
-                <td>{matrix[num[2]][num[3]]}</td>
-              </tr>
-              <tr>
-                <th>{num[3]}</th>
-                <td>{matrix[num[3]][num[0]]}</td>
-                <td>{matrix[num[3]][num[1]]}</td>
-                <td>{matrix[num[3]][num[2]]}</td>
-                <td>{matrix[num[3]][num[3]]}</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <th></th>
+                  <th>{num[0]}</th>
+                  <th>{num[1]}</th>
+                  <th>{num[2]}</th>
+                  <th>{num[3]}</th>
+                </tr>
+                <tr>
+                  <th>{num[0]}</th>
+                  <td>{round(matrix[num[0]][num[0]], presicion)}</td>
+                  <td>{round(matrix[num[0]][num[1]], presicion)}</td>
+                  <td>{round(matrix[num[0]][num[2]], presicion)}</td>
+                  <td>{round(matrix[num[0]][num[3]], presicion)}</td>
+                </tr>
+                <tr>
+                  <th>{num[1]}</th>
+                  <td>{round(matrix[num[1]][num[0]], presicion)}</td>
+                  <td>{round(matrix[num[1]][num[1]], presicion)}</td>
+                  <td>{round(matrix[num[1]][num[2]], presicion)}</td>
+                  <td>{round(matrix[num[1]][num[3]], presicion)}</td>
+                </tr>
+                <tr>
+                  <th>{num[2]}</th>
+                  <td>{round(matrix[num[2]][num[0]], presicion)}</td>
+                  <td>{round(matrix[num[2]][num[1]], presicion)}</td>
+                  <td>{round(matrix[num[2]][num[2]], presicion)}</td>
+                  <td>{round(matrix[num[2]][num[3]], presicion)}</td>
+                </tr>
+                <tr>
+                  <th>{num[3]}</th>
+                  <td>{round(matrix[num[3]][num[0]], presicion)}</td>
+                  <td>{round(matrix[num[3]][num[1]], presicion)}</td>
+                  <td>{round(matrix[num[3]][num[2]], presicion)}</td>
+                  <td>{round(matrix[num[3]][num[3]], presicion)}</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </>
