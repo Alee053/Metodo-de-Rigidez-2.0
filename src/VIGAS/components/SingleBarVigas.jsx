@@ -37,7 +37,6 @@ export default function SingleBarVigas({ bar = new Bar(), id }) {
   //TODO USAR PRESICION GLOBAL
   const presicion = 5;
 
-  //TODO MODIFICAR ARRAY GLOBAL
   const applyChanges = () => {
     if (!isEdit) return;
     const iE = inputE.current.value;
@@ -73,6 +72,13 @@ export default function SingleBarVigas({ bar = new Bar(), id }) {
 
     setMainData({ ...MainData, bars: newBars });
   };
+
+  function removeBar() {
+    setMainData({
+      ...MainData,
+      bars: MainData.bars.filter((a, index) => id !== index),
+    });
+  }
 
   return (
     <div className='bg-white justify-items-center bg-opacity-10 border-2 rounded-2xl p-5 pb-0 grid grid-rows-2 place-items-center self-start relative'>
@@ -110,7 +116,9 @@ export default function SingleBarVigas({ bar = new Bar(), id }) {
             }}>
             {!isEdit ? "Editar" : "Aplicar"}
           </Button>
-          <Button styles='border-2'>Eliminar</Button>
+          <Button styles='border-2' func={removeBar}>
+            Eliminar
+          </Button>
         </div>
       </div>
       {isEdit ? (

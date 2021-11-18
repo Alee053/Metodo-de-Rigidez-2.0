@@ -4,15 +4,17 @@ export default function Btn({
   },
   children,
   styles = "",
+  isDisabled = false,
 }) {
   return (
     <button
       className={
-        "text-white rounded-xl xl:p-2 xl:text-lg sm:text-sm hover:bg-gray-200 hover:bg-opacity-10 hover:text-white hover:shadow-md mx-5" +
+        "text-white rounded-xl xl:p-2 xl:text-lg sm:text-sm hover:bg-gray-200 hover:bg-opacity-10 hover:text-white hover:shadow-md mx-5 disabled:opacity-50" +
         " " +
         styles
       }
-      onClick={func}>
+      onClick={func}
+      disabled={isDisabled}>
       {children}
     </button>
   );
