@@ -16,7 +16,7 @@ function createWindow() {
       contextIsolation: false,
     },
   });
-  require("@electron/remote/main").enable(win);
+  require("@electron/remote/main").enable(win.webContents);
 
   win.loadURL(
     isDev

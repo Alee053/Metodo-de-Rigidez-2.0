@@ -2,7 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 import NavbarVigas from "./components/NavbarVigas";
-import Footerbar from "../components/Footerbar";
+import FooterBarVigas from "./components/FooterBarVigas";
 import SeccionBarras from "./sections/SeccionBarrasVigas";
 
 export const VigasContext = React.createContext();
@@ -42,7 +42,7 @@ export default function VigasMain() {
             <h1>Ecuaciones</h1>
           </Route>
         </Switch>
-        <Footerbar />
+        <FooterBarVigas />
       </div>
     </VigasContext.Provider>
   );
