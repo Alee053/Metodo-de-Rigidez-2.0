@@ -4,6 +4,10 @@ import React, { useState, useEffect } from "react";
 import NavbarVigas from "./components/NavbarVigas";
 import FooterBarVigas from "./components/FooterBarVigas";
 import SeccionBarras from "./sections/SeccionBarrasVigas";
+import SeccionMatrizTotal from "./sections/SeccionMatrizTotal";
+
+import { Bar } from "./js/BarVigas";
+import { solveTotalMatrix } from "../js/Utility";
 
 export const VigasContext = React.createContext();
 
@@ -20,14 +24,47 @@ export default function VigasMain() {
       [1, 2, 3, 4],
     ],
   });
+  const [solvedData, setSolvedData] = useState({
+    bars: [],
+    totalMatrix: [],
+    equations: [],
+  });
+
+  function updateSolvedData() {
+    const newSolvedData = {
+      bars: [],
+      totalMatrix: [],
+      equations: [],
+    };
+    const matrixArray = [];
+    let maxNum = 0;
+    for (let i = 0; i < MainData.bars.length; i++) {
+      const currentBar = MainData.bars[i];
+      maxNum = Math.max(maxNum, ...currentBar.num);
+      newSolvedData.bars.push(
+        new Bar(currentBar.E, currentBar.I, currentBar.L, currentBar.num),
+      );
+      newSolvedData.bars[i].solveMatrix();
+      matrixArray.push(newSolvedData.bars[i].matrix);
+    }
+    newSolvedData.totalMatrix = solveTotalMatrix(matrixArray, maxNum);
+    setSolvedData(newSolvedData);
+  }
 
   useEffect(() => {
-    console.log(MainData);
+    updateSolvedData();
   }, [MainData]);
 
   return (
     <VigasContext.Provider
-      value={{ MainData, setMainData, precision, setPrecision }}>
+      value={{
+        MainData,
+        setMainData,
+        precision,
+        setPrecision,
+        solvedData,
+        updateSolvedData,
+      }}>
       <div className='grid grid-rows-min-3 h-full'>
         <NavbarVigas />
         <Switch>
@@ -35,7 +72,7 @@ export default function VigasMain() {
             <SeccionBarras />
           </Route>
           <Route path='/vigas/matriz-total'>
-            <h1>Matriz</h1>
+            <SeccionMatrizTotal />
           </Route>
           <Route path='/vigas/vectores'>
             <h1>Vectores</h1>
