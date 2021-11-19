@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 
 import Button from "../../components/templates/Button";
 import Input from "../../components/templates/Input";
@@ -10,7 +10,10 @@ const fs = window.require("fs");
 const win = window.require("@electron/remote").getCurrentWindow();
 
 export default function Footerbar() {
-  const { MainData, setMainData } = useContext(VigasContext);
+  const { MainData, setMainData, setPrecision, precision } =
+    useContext(VigasContext);
+
+  const inputPres = useRef(null);
 
   function loadData() {
     let path = dialog.showOpenDialogSync(win, {
@@ -50,12 +53,16 @@ export default function Footerbar() {
     if (response === 0) setMainData({ bars: [], vectores: [[], []] });
   }
 
+  function changePrecision() {
+    setPrecision(inputPres.current.value);
+  }
+
   return (
     <nav className='w-screen bg-gradient-to-l from-indigo-700 to-blue-500 grid grid-cols-2 items-center h-15 border-t-2'>
       <div className='inline-block'>
         <h2 className='text-lg inline-block mx-5'>Precision:</h2>
-        <Input type='number' styles='w-20' />
-        <Button>Aplicar</Button>
+        <Input styles='w-20' placeholder={precision} refe={inputPres} />
+        <Button func={changePrecision}>Aplicar</Button>
       </div>
 
       <div className='justify-self-end'>

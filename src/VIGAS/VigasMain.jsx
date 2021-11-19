@@ -9,6 +9,7 @@ export const VigasContext = React.createContext();
 
 export default function VigasMain() {
   //* VARIABLES GLOBALES
+  const [precision, setPrecision] = useState(3);
   const [MainData, setMainData] = useState({
     bars: [
       { E: 10, I: 4, L: 5, num: [1, 3, 4, 2] },
@@ -25,7 +26,8 @@ export default function VigasMain() {
   }, [MainData]);
 
   return (
-    <VigasContext.Provider value={{ MainData, setMainData }}>
+    <VigasContext.Provider
+      value={{ MainData, setMainData, precision, setPrecision }}>
       <div className='grid grid-rows-min-3 h-full'>
         <NavbarVigas />
         <Switch>

@@ -12,7 +12,7 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { round } from "../../js/Utility";
 
 export default function SingleBarVigas({ bar = new Bar(), id }) {
-  const { setMainData, MainData } = useContext(VigasContext);
+  const { setMainData, MainData, precision } = useContext(VigasContext);
 
   const [E, setE] = useState(bar.E);
   const [I, setI] = useState(bar.I);
@@ -33,9 +33,6 @@ export default function SingleBarVigas({ bar = new Bar(), id }) {
 
   const toggleMatrix = () => setIsOpen(!isOpen);
   const toggleEdit = () => setIsEdit(!isEdit);
-
-  //TODO USAR PRESICION GLOBAL
-  const presicion = 5;
 
   const applyChanges = () => {
     if (!isEdit) return;
@@ -165,31 +162,31 @@ export default function SingleBarVigas({ bar = new Bar(), id }) {
                 </tr>
                 <tr>
                   <th>{num[0]}</th>
-                  <td>{round(matrix[num[0]][num[0]], presicion)}</td>
-                  <td>{round(matrix[num[0]][num[1]], presicion)}</td>
-                  <td>{round(matrix[num[0]][num[2]], presicion)}</td>
-                  <td>{round(matrix[num[0]][num[3]], presicion)}</td>
+                  <td>{round(matrix[num[0]][num[0]], precision)}</td>
+                  <td>{round(matrix[num[0]][num[1]], precision)}</td>
+                  <td>{round(matrix[num[0]][num[2]], precision)}</td>
+                  <td>{round(matrix[num[0]][num[3]], precision)}</td>
                 </tr>
                 <tr>
                   <th>{num[1]}</th>
-                  <td>{round(matrix[num[1]][num[0]], presicion)}</td>
-                  <td>{round(matrix[num[1]][num[1]], presicion)}</td>
-                  <td>{round(matrix[num[1]][num[2]], presicion)}</td>
-                  <td>{round(matrix[num[1]][num[3]], presicion)}</td>
+                  <td>{round(matrix[num[1]][num[0]], precision)}</td>
+                  <td>{round(matrix[num[1]][num[1]], precision)}</td>
+                  <td>{round(matrix[num[1]][num[2]], precision)}</td>
+                  <td>{round(matrix[num[1]][num[3]], precision)}</td>
                 </tr>
                 <tr>
                   <th>{num[2]}</th>
-                  <td>{round(matrix[num[2]][num[0]], presicion)}</td>
-                  <td>{round(matrix[num[2]][num[1]], presicion)}</td>
-                  <td>{round(matrix[num[2]][num[2]], presicion)}</td>
-                  <td>{round(matrix[num[2]][num[3]], presicion)}</td>
+                  <td>{round(matrix[num[2]][num[0]], precision)}</td>
+                  <td>{round(matrix[num[2]][num[1]], precision)}</td>
+                  <td>{round(matrix[num[2]][num[2]], precision)}</td>
+                  <td>{round(matrix[num[2]][num[3]], precision)}</td>
                 </tr>
                 <tr>
                   <th>{num[3]}</th>
-                  <td>{round(matrix[num[3]][num[0]], presicion)}</td>
-                  <td>{round(matrix[num[3]][num[1]], presicion)}</td>
-                  <td>{round(matrix[num[3]][num[2]], presicion)}</td>
-                  <td>{round(matrix[num[3]][num[3]], presicion)}</td>
+                  <td>{round(matrix[num[3]][num[0]], precision)}</td>
+                  <td>{round(matrix[num[3]][num[1]], precision)}</td>
+                  <td>{round(matrix[num[3]][num[2]], precision)}</td>
+                  <td>{round(matrix[num[3]][num[3]], precision)}</td>
                 </tr>
               </tbody>
             </table>
