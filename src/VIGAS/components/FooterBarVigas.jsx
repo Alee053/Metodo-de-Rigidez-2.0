@@ -54,7 +54,8 @@ export default function Footerbar() {
   }
 
   function changePrecision() {
-    setPrecision(inputPres.current.value);
+    setPrecision(inputPres.current.value ? inputPres.current.value : precision);
+    inputPres.current.value = "";
   }
 
   return (

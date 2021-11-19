@@ -10,7 +10,7 @@ export const VigasContext = React.createContext();
 export default function VigasMain() {
   //* VARIABLES GLOBALES
   const [precision, setPrecision] = useState(3);
-  const [MainData, setMainData] = useState({
+  let [MainData, setMainData] = useState({
     bars: [
       { E: 10, I: 4, L: 5, num: [1, 3, 4, 2] },
       { E: 2, I: 4, L: 13, num: [1, 5, 4, 2] },

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import InputBarsVigas from "../components/InputBarsVigas";
 import SingleBarVigas from "../components/SingleBarVigas";

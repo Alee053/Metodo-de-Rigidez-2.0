@@ -1,5 +1,5 @@
-function round(number, pres = 4) {
-  return number % 1 ? parseFloat(number).toFixed(pres) : number;
+function round(num, pres) {
+  return +(Math.round(num + ("e+" + pres)) + ("e-" + pres));
 }
 
 export { round };

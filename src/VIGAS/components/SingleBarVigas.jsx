@@ -12,7 +12,8 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { round } from "../../js/Utility";
 
 export default function SingleBarVigas({ bar = new Bar(), id }) {
-  const { setMainData, MainData, precision } = useContext(VigasContext);
+  //LET PARA EVITAR RERENDER EN EDIT
+  let { setMainData, MainData, precision } = useContext(VigasContext);
 
   const [E, setE] = useState(bar.E);
   const [I, setI] = useState(bar.I);
@@ -67,7 +68,8 @@ export default function SingleBarVigas({ bar = new Bar(), id }) {
     const newBars = MainData.bars;
     newBars[id] = { E: bar.E, I: bar.I, L: bar.L, num: bar.num };
 
-    setMainData({ ...MainData, bars: newBars });
+    //EVITA RERENDER
+    MainData = { ...MainData, bars: newBars };
   };
 
   function removeBar() {
