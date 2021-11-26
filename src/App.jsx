@@ -7,6 +7,8 @@ import {
 
 import VigasMain from "./VIGAS/VigasMain";
 
+//TODO ARREGLAR ROUTES
+
 function App() {
   return (
     <Router>

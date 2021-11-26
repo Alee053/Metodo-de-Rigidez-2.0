@@ -43,13 +43,16 @@ export default function Footerbar() {
     if (path !== undefined) fs.writeFileSync(path, save);
   }
 
-  function clearAll() {
-    const options = {
-      title: "Metodo de Rigidez",
-      buttons: ["Confirmar", "Cancelar"],
-      message: "¿Seguro que quieres borrar todas las barras?",
-    };
-    const response = dialog.showMessageBoxSync(win, options);
+  function clearAll(skip = false) {
+    let response;
+    if (!skip) {
+      const options = {
+        title: "Metodo de Rigidez",
+        buttons: ["Confirmar", "Cancelar"],
+        message: "¿Seguro que quieres borrar todas las barras?",
+      };
+      response = dialog.showMessageBoxSync(win, options);
+    }
     if (response === 0) setMainData({ bars: [], vectores: [[], []] });
   }
 

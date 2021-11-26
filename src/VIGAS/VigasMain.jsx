@@ -5,6 +5,7 @@ import NavbarVigas from "./components/NavbarVigas";
 import FooterBarVigas from "./components/FooterBarVigas";
 import SeccionBarras from "./sections/SeccionBarrasVigas";
 import SeccionMatrizTotal from "./sections/SeccionMatrizTotal";
+import SeccionVectoresVigas from "./sections/SeccionVectoresVigas";
 
 import { Bar } from "./js/BarVigas";
 import { solveTotalMatrix } from "../js/Utility";
@@ -14,15 +15,11 @@ export const VigasContext = React.createContext();
 export default function VigasMain() {
   //* VARIABLES GLOBALES
   const [precision, setPrecision] = useState(3);
+  const [MaxNum, setMaxNum] = useState(0);
+
   let [MainData, setMainData] = useState({
-    bars: [
-      { E: 10, I: 4, L: 5, num: [1, 3, 4, 2] },
-      { E: 2, I: 4, L: 13, num: [1, 5, 4, 2] },
-    ],
-    vectores: [
-      [1, 2, 3, 4],
-      [1, 2, 3, 4],
-    ],
+    bars: [],
+    vectores: [],
   });
   const [solvedData, setSolvedData] = useState({
     bars: [],
@@ -47,6 +44,7 @@ export default function VigasMain() {
       newSolvedData.bars[i].solveMatrix();
       matrixArray.push(newSolvedData.bars[i].matrix);
     }
+    setMaxNum(maxNum);
     newSolvedData.totalMatrix = solveTotalMatrix(matrixArray, maxNum);
     setSolvedData(newSolvedData);
   }
@@ -64,6 +62,7 @@ export default function VigasMain() {
         setPrecision,
         solvedData,
         updateSolvedData,
+        MaxNum,
       }}>
       <div className='grid grid-rows-min-3 h-full'>
         <NavbarVigas />
@@ -75,7 +74,7 @@ export default function VigasMain() {
             <SeccionMatrizTotal />
           </Route>
           <Route path='/vigas/vectores'>
-            <h1>Vectores</h1>
+            <SeccionVectoresVigas />
           </Route>
           <Route path='/vigas/ecuaciones'>
             <h1>Ecuaciones</h1>
