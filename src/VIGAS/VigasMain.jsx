@@ -19,7 +19,7 @@ export default function VigasMain() {
 
   let [MainData, setMainData] = useState({
     bars: [],
-    vectores: [],
+    vectores: [[], []],
   });
   const [solvedData, setSolvedData] = useState({
     bars: [],
@@ -51,6 +51,7 @@ export default function VigasMain() {
 
   useEffect(() => {
     updateSolvedData();
+    console.log(MainData);
   }, [MainData]);
 
   return (

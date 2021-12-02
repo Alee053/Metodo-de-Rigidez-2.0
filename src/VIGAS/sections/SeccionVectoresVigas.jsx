@@ -8,20 +8,16 @@ import { VigasContext } from "../VigasMain";
 export default function SeccionVectoresVigas() {
   const { MaxNum, MainData, setMainData } = useContext(VigasContext);
 
-  const qRefs = useRef([]);
-  const dRefs = useRef([]);
+  let qRefs = [];
+  let dRefs = [];
 
-  useEffect(() => {
-    while (qRefs.length > MaxNum) {
-      qRefs.current.pop();
-      dRefs.current.pop();
-    }
-  }, [MaxNum]);
   //TODO ARREGLAR
   useEffect(() => {
     for (let i = 0; i < MaxNum; i++) {
-      qRefs.current[i].placeholder = MainData.vectores[0][i];
-      dRefs.current[i].placeholder = MainData.vectores[1][i];
+      qRefs.current[i].value =
+        MainData.vectores[0][i] === undefined ? "" : MainData.vectores[0][i];
+      dRefs.current[i].value =
+        MainData.vectores[1][i] === undefined ? "" : MainData.vectores[1][i];
     }
   }, []);
 
@@ -30,8 +26,8 @@ export default function SeccionVectoresVigas() {
       if (!qRefs.current[i].value || !dRefs.current[i].value) return;
     const newVectores = [[], []];
     for (let i = 0; i < MaxNum; i++) {
-      newVectores[0].push(parseFloat(qRefs.current[i].value));
-      newVectores[1].push(parseFloat(dRefs.current[i].value));
+      newVectores[0].push(qRefs.current[i].value);
+      newVectores[1].push(dRefs.current[i].value);
     }
     setMainData({ ...MainData, vectores: newVectores });
   }
@@ -55,7 +51,7 @@ export default function SeccionVectoresVigas() {
                 <td className='p-1 w-32 content-center justify-center'>
                   <Input
                     styles='h-full w-full rounded-xl'
-                    refe={(elem) => qRefs.current.push(elem)}
+                    refe={(elem) => qRefs.push(elem)}
                   />
                 </td>
               </tr>
