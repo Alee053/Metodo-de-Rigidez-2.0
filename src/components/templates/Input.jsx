@@ -1,9 +1,9 @@
 export default function Input({
-  type = "text",
-  refe = null,
-  styles = "",
-  placeholder = "",
-}) {
+                                type = "text",
+                                refe = null,
+                                styles = "",
+                                placeholder = "",
+                              }) {
   return (
     <input
       className={

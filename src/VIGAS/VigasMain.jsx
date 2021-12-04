@@ -1,5 +1,5 @@
-import { Route, Switch } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import {Route, Switch} from "react-router-dom";
+import React, {useEffect, useState} from "react";
 
 import NavbarVigas from "./components/NavbarVigas";
 import FooterBarVigas from "./components/FooterBarVigas";
@@ -7,16 +7,14 @@ import SeccionBarras from "./sections/SeccionBarrasVigas";
 import SeccionMatrizTotal from "./sections/SeccionMatrizTotal";
 import SeccionVectoresVigas from "./sections/SeccionVectoresVigas";
 
-import { Bar } from "./js/BarVigas";
-import { solveTotalMatrix } from "../js/Utility";
+import {Bar} from "./js/BarVigas";
+import {solveTotalMatrix} from "../js/Utility";
 
 export const VigasContext = React.createContext();
 
 export default function VigasMain() {
-  //* VARIABLES GLOBALES
+  //VARIABLES GLOBALES
   const [precision, setPrecision] = useState(3);
-  const [MaxNum, setMaxNum] = useState(0);
-
   let [MainData, setMainData] = useState({
     bars: [],
     vectores: [[], []],
@@ -26,7 +24,15 @@ export default function VigasMain() {
     totalMatrix: [],
     equations: [],
   });
+  const [isValidData, setIsValidData] = useState(false);
 
+  //ACTUALIZO LA VARIABLE QUE COMPRUEBA SI LOS DATOS SON VALIDOS
+  useEffect(() => {
+    console.log(MainData);
+    setIsValidData(!!MainData.bars.length);
+  }, [MainData])
+
+  //RESUELVE LAS BARRAS
   function updateSolvedData() {
     const newSolvedData = {
       bars: [],
@@ -44,14 +50,13 @@ export default function VigasMain() {
       newSolvedData.bars[i].solveMatrix();
       matrixArray.push(newSolvedData.bars[i].matrix);
     }
-    setMaxNum(maxNum);
     newSolvedData.totalMatrix = solveTotalMatrix(matrixArray, maxNum);
     setSolvedData(newSolvedData);
   }
 
+  //ACTUALIZA DATOS RESULETOS CADA VEZ QUE SE MODIFIQUEN LOS DATOS
   useEffect(() => {
     updateSolvedData();
-    console.log(MainData);
   }, [MainData]);
 
   return (
@@ -63,25 +68,25 @@ export default function VigasMain() {
         setPrecision,
         solvedData,
         updateSolvedData,
-        MaxNum,
+        isValidData
       }}>
       <div className='grid grid-rows-min-3 h-full'>
-        <NavbarVigas />
+        <NavbarVigas/>
         <Switch>
           <Route path='/vigas/barras'>
-            <SeccionBarras />
+            <SeccionBarras/>
           </Route>
           <Route path='/vigas/matriz-total'>
-            <SeccionMatrizTotal />
+            <SeccionMatrizTotal/>
           </Route>
           <Route path='/vigas/vectores'>
-            <SeccionVectoresVigas />
+            <SeccionVectoresVigas/>
           </Route>
           <Route path='/vigas/ecuaciones'>
             <h1>Ecuaciones</h1>
           </Route>
         </Switch>
-        <FooterBarVigas />
+        <FooterBarVigas/>
       </div>
     </VigasContext.Provider>
   );

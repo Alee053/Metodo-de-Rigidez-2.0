@@ -1,9 +1,4 @@
-import {
-  HashRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import {HashRouter as Router, Redirect, Route, Switch,} from "react-router-dom";
 
 import VigasMain from "./VIGAS/VigasMain";
 
@@ -14,17 +9,17 @@ function App() {
     <Router>
       <Switch>
         <Route exact path='/'>
-          <Redirect to='/vigas/barras' />
+          <Redirect to='/vigas/barras'/>
         </Route>
-        <Route path='/home'>
-          <Redirect to='/vigas/barras' />
+        <Route path='/home' className={""}>
+          <Redirect to='/vigas/barras'/>
           <h1>Home</h1>
         </Route>
         <Route path='/vigas'>
-          <VigasMain />
+          <VigasMain/>
         </Route>
         <Route path='*'>
-          <Redirect to='/home' />
+          <Redirect to='/home'/>
         </Route>
       </Switch>
     </Router>
