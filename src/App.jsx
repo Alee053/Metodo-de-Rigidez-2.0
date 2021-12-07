@@ -11,7 +11,7 @@ function App() {
         <Route exact path='/'>
           <Redirect to='/vigas/barras'/>
         </Route>
-        <Route path='/home' className={""}>
+        <Route path='/home' >
           <Redirect to='/vigas/barras'/>
           <h1>Home</h1>
         </Route>

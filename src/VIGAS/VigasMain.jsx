@@ -25,6 +25,8 @@ export default function VigasMain() {
     equations: [],
   });
   const [isValidData, setIsValidData] = useState(false);
+  const [maxNum, setMaxNum] = useState(0);
+
 
   //ACTUALIZO LA VARIABLE QUE COMPRUEBA SI LOS DATOS SON VALIDOS
   useEffect(() => {
@@ -40,18 +42,21 @@ export default function VigasMain() {
       equations: [],
     };
     const matrixArray = [];
-    let maxNum = 0;
+    let max = 0;
     for (let i = 0; i < MainData.bars.length; i++) {
       const currentBar = MainData.bars[i];
-      maxNum = Math.max(maxNum, ...currentBar.num);
+      max = Math.max(max, ...currentBar.num);
       newSolvedData.bars.push(
         new Bar(currentBar.E, currentBar.I, currentBar.L, currentBar.num),
       );
       newSolvedData.bars[i].solveMatrix();
       matrixArray.push(newSolvedData.bars[i].matrix);
     }
-    newSolvedData.totalMatrix = solveTotalMatrix(matrixArray, maxNum);
+    newSolvedData.totalMatrix = solveTotalMatrix(matrixArray, max);
     setSolvedData(newSolvedData);
+
+    if (max !== maxNum) setMaxNum(max);
+
   }
 
   //ACTUALIZA DATOS RESULETOS CADA VEZ QUE SE MODIFIQUEN LOS DATOS
@@ -68,7 +73,8 @@ export default function VigasMain() {
         setPrecision,
         solvedData,
         updateSolvedData,
-        isValidData
+        isValidData,
+        maxNum
       }}>
       <div className='grid grid-rows-min-3 h-full'>
         <NavbarVigas/>

@@ -9,7 +9,7 @@ const {dialog, BrowserWindow} = window.require("@electron/remote");
 
 function SeccionMatrizTotal() {
   //IMPORTO VARIABLES GLOBALES
-  const {solvedData, precision, updateSolvedData, MainData, isValidData} =
+  const {solvedData, precision, updateSolvedData, isValidData} =
     useContext(VigasContext);
 
   //PUEDE Q ESTO SEA LENTO

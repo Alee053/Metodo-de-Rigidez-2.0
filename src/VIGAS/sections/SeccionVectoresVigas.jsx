@@ -9,7 +9,7 @@ import {Redirect} from "react-router-dom";
 const {dialog, BrowserWindow} = window.require("@electron/remote");
 
 export default function SeccionVectoresVigas() {
-  let {solvedData, isValidData, setMainData, MainData} = useContext(VigasContext);
+  let {isValidData, MainData, maxNum, setMainData} = useContext(VigasContext);
   const [qRefs, setQRefs] = useState([]);
   const [dRefs, setDRefs] = useState([]);
 
@@ -30,34 +30,36 @@ export default function SeccionVectoresVigas() {
   //ACTUALIZAR LOS INPUTS AL CAMBIAR DE DATOS
   useEffect(() => {
     if (!isValidData) return;
-    setQRefs((qRefs) => Array(solvedData.totalMatrix.length - 1).fill().map((_, i) => qRefs[i] || createRef()))
-    setDRefs((dRefs) => Array(solvedData.totalMatrix.length - 1).fill().map((_, i) => dRefs[i] || createRef()))
-  }, [solvedData])
+    setQRefs((qRefs) => Array(maxNum).fill().map((_, i) => qRefs[i] || createRef()))
+    setDRefs((dRefs) => Array(maxNum).fill().map((_, i) => dRefs[i] || createRef()))
+  }, [maxNum])
+
+  useEffect(() => {
+    if (qRefs.length === 0) return;
+    for (let i = 0; i < MainData.vectores[0].length; i++) {
+      qRefs[i].current.value = MainData.vectores[0][i];
+      dRefs[i].current.value = MainData.vectores[1][i];
+    }
+  }, [])
 
   function updateVectors() {
+
+    for (let i = 0; i < maxNum; i++)
+      if (!qRefs[i].current.value || !dRefs[i].current.value) return;
+
     setMainData({
       ...MainData, vectores: [
         qRefs.map((val, i) => {
-          return val.current.value !== "" || MainData.vectores[0].length === 0
-            ?
-            val.current.value
-            :
-            MainData.vectores[0][i]
+          return val.current.value
         })
         , dRefs.map((val, i) => {
-          return val.current.value !== "" || MainData.vectores[0].length === 0
-            ?
-            val.current.value
-            :
-            MainData.vectores[1][i]
+          return val.current.value
         })]
     })
   }
 
   return isValidData ? (
-    <div
-      className='overflow-y-scroll grid grid-cols-3 place-items-center p-10'
-      onChange={updateVectors}>
+    <div className='overflow-y-scroll grid grid-cols-3 place-items-center p-10' onChange={updateVectors}>
       <table className='justify-self-end'>
         <thead>
         <tr>
@@ -67,18 +69,16 @@ export default function SeccionVectoresVigas() {
         </tr>
         </thead>
         <tbody>
-        {solvedData.totalMatrix.map((_, i) => {
-          return i !== 0 ? (
-            <tr key={Math.random()}>
-              <td className='p-1 w-32 content-center justify-center'>
-                <Input
-                  styles='h-full w-full rounded-xl'
-                  refe={qRefs[i - 1]}
-                  placeholder={MainData.vectores[0].length > 0 ? MainData.vectores[0][i - 1] : ""}
-                />
-              </td>
-            </tr>
-          ) : null;
+        {[...Array(maxNum)].map((_, i) => {
+          return (<tr key={Math.random()}>
+            <td className='p-1 w-32 content-center justify-center'>
+              <Input
+                styles='h-full w-full rounded-xl'
+                refe={qRefs[i]}
+              />
+            </td>
+          </tr>);
+
         })}
         </tbody>
       </table>
@@ -94,18 +94,17 @@ export default function SeccionVectoresVigas() {
         </tr>
         </thead>
         <tbody>
-        {solvedData.totalMatrix.map((_, i) => {
-          return i !== 0 ? (
+        {[...Array(maxNum)].map((_, i) => {
+          return (
             <tr key={Math.random()}>
               <td className='p-1 w-32 content-center justify-center'>
                 <Input
                   styles='h-full w-full rounded-xl'
-                  refe={dRefs[i - 1]}
-                  placeholder={MainData.vectores[0].length > 0 ? MainData.vectores[1][i - 1] : ""}
+                  refe={dRefs[i]}
                 />
               </td>
             </tr>
-          ) : null;
+          );
         })}
         </tbody>
       </table>
