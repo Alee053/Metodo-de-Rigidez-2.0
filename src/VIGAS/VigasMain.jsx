@@ -1,5 +1,5 @@
 import {Route, Switch} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 
 import NavbarVigas from "./components/NavbarVigas";
 import FooterBarVigas from "./components/FooterBarVigas";
@@ -19,6 +19,10 @@ export default function VigasMain() {
     bars: [],
     vectores: [[], []],
   });
+  const MainSave = useRef({
+    bars: [],
+    vectores: [[], []],
+  });
   const [solvedData, setSolvedData] = useState({
     bars: [],
     totalMatrix: [],
@@ -30,8 +34,8 @@ export default function VigasMain() {
 
   //ACTUALIZO LA VARIABLE QUE COMPRUEBA SI LOS DATOS SON VALIDOS
   useEffect(() => {
-    console.log(MainData);
     setIsValidData(!!MainData.bars.length);
+    MainSave.current = MainData;
   }, [MainData])
 
   //RESUELVE LAS BARRAS
@@ -74,7 +78,8 @@ export default function VigasMain() {
         solvedData,
         updateSolvedData,
         isValidData,
-        maxNum
+        maxNum,
+        MainSave,
       }}>
       <div className='grid grid-rows-min-3 h-full'>
         <NavbarVigas/>

@@ -10,7 +10,7 @@ const fs = window.require("fs");
 const win = window.require("@electron/remote").getCurrentWindow();
 
 export default function Footerbar() {
-  const { MainData, setMainData, setPrecision, precision } =
+  const { MainSave, setMainData, setPrecision, precision } =
     useContext(VigasContext);
 
   const inputPres = useRef(null);
@@ -35,7 +35,7 @@ export default function Footerbar() {
   }
 
   function saveData() {
-    const save = JSON.stringify(MainData);
+    const save = JSON.stringify(MainSave.current);
     let path = dialog.showSaveDialogSync(win, {
       title: "Guardar barras",
       filters: [{ name: "JSON", extensions: ["json"] }],
@@ -44,7 +44,7 @@ export default function Footerbar() {
   }
 
   function clearAll(skip = false) {
-    let response;
+    let response=0;
     if (!skip) {
       const options = {
         title: "Metodo de Rigidez",
@@ -72,7 +72,7 @@ export default function Footerbar() {
       <div className='justify-self-end'>
         <Button func={saveData}>Guardar Barras</Button>
         <Button func={loadData}>Cargar Barras</Button>
-        <Button func={clearAll}>Borrar Todo</Button>
+        <Button func={()=>{clearAll()}}>Borrar Todo</Button>
       </div>
     </nav>
   );
