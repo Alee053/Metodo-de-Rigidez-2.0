@@ -6,9 +6,11 @@ import FooterBarVigas from "./components/FooterBarVigas";
 import SeccionBarras from "./sections/SeccionBarrasVigas";
 import SeccionMatrizTotal from "./sections/SeccionMatrizTotal";
 import SeccionVectoresVigas from "./sections/SeccionVectoresVigas";
+import SeccionEcuacionesVigas from "./sections/SeccionEcuacionesVigas";
 
 import {Bar} from "./js/BarVigas";
 import {solveTotalMatrix} from "../js/Utility";
+
 
 export const VigasContext = React.createContext();
 
@@ -26,11 +28,11 @@ export default function VigasMain() {
   const [solvedData, setSolvedData] = useState({
     bars: [],
     totalMatrix: [],
-    equations: [],
   });
   const [isValidData, setIsValidData] = useState(false);
   const [maxNum, setMaxNum] = useState(0);
-
+  const tempEquations = useRef([[], []]);
+  const solvedEquations = useRef([])
 
   //ACTUALIZO LA VARIABLE QUE COMPRUEBA SI LOS DATOS SON VALIDOS
   useEffect(() => {
@@ -43,7 +45,6 @@ export default function VigasMain() {
     const newSolvedData = {
       bars: [],
       totalMatrix: [],
-      equations: [],
     };
     const matrixArray = [];
     let max = 0;
@@ -80,6 +81,9 @@ export default function VigasMain() {
         isValidData,
         maxNum,
         MainSave,
+        setSolvedData,
+        tempEquations,
+        solvedEquations
       }}>
       <div className='grid grid-rows-min-3 h-full'>
         <NavbarVigas/>
@@ -94,7 +98,7 @@ export default function VigasMain() {
             <SeccionVectoresVigas/>
           </Route>
           <Route path='/vigas/ecuaciones'>
-            <h1>Ecuaciones</h1>
+            <SeccionEcuacionesVigas/>
           </Route>
         </Switch>
         <FooterBarVigas/>

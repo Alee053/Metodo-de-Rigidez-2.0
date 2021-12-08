@@ -5,15 +5,17 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         "min-2": "min-content 1fr",
+        "custom-3": "1fr 1em 1.5fr",
       },
       gridTemplateRows: {
         "min-3": "min-content 1fr min-content",
         "min-2": "min-content 1fr",
+
       },
     },
   },
   variants: {
-    extend: { opacity: ["disabled"], color: ["disabled"] },
+    extend: {opacity: ["disabled"], color: ["disabled"]},
   },
   plugins: [],
 };

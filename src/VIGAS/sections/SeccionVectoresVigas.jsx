@@ -1,20 +1,30 @@
 import React, {createRef, useContext, useEffect, useState} from "react";
-
-import Button from "../../components/templates/Button";
 import Input from "../../components/templates/Input";
 
 import {VigasContext} from "../VigasMain";
 import {Redirect} from "react-router-dom";
 
+import {getEquations} from "../js/Equations";
+
 const {dialog, BrowserWindow} = window.require("@electron/remote");
 
 export default function SeccionVectoresVigas() {
-  let {isValidData, MainData, maxNum, MainSave} = useContext(VigasContext);
+  let {
+    isValidData,
+    MainData,
+    maxNum,
+    MainSave,
+    updateSolvedData,
+    solvedData,
+    precision,
+    tempEquations
+  } = useContext(VigasContext);
   const [qRefs, setQRefs] = useState([]);
   const [dRefs, setDRefs] = useState([]);
 
   //COMPROBAR DATOS VALIDOS
   useEffect(() => {
+    updateSolvedData();
     if (!isValidData) {
       const window = BrowserWindow.getFocusedWindow();
 
@@ -37,9 +47,7 @@ export default function SeccionVectoresVigas() {
 
 
   useEffect(() => {
-
     setTimeout(() => {
-      console.log(qRefs);
       if (qRefs.length && MainSave.current.vectores.length) {
         if (MainSave.current.vectores[0].length) {
           for (let i = 0; i < MainSave.current.vectores[0].length; i++) {
@@ -67,11 +75,26 @@ export default function SeccionVectoresVigas() {
         })]
     }
     MainSave.current = MainData;
+
+    solvedData = ({
+        ...solvedData,
+      }
+    )
+
+    tryGetEquations()
+
+  }
+
+  function tryGetEquations() {
+    if (!qRefs.length) return;
+    for (let i = 0; i < maxNum; i++)
+      if (!qRefs[i].current.value || !dRefs[i].current.value) return;
+    tempEquations.current = getEquations(solvedData.totalMatrix, MainSave.current.vectores[0], MainSave.current.vectores[1], precision);
   }
 
   return isValidData ? (
-      <div className='overflow-y-scroll grid grid-cols-3 place-items-center p-10' onChange={updateVectors}>
-        <table className='justify-self-end'>
+      <div className='overflow-y-scroll grid grid-cols-2 place-items-center p-10' onChange={updateVectors}>
+        <table>
           <thead>
           <tr>
             <th>
@@ -93,10 +116,7 @@ export default function SeccionVectoresVigas() {
           })}
           </tbody>
         </table>
-        <Button styles='h-40 w-40 bg-white bg-opacity-20 rounded-3xl'>
-          Resolver
-        </Button>
-        <table className='justify-self-start'>
+        <table>
           <thead>
           <tr>
             <th>
