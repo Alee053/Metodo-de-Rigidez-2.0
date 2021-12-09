@@ -50,7 +50,8 @@ export default function SeccionVectoresVigas() {
     setTimeout(() => {
       if (qRefs.length && MainSave.current.vectores.length) {
         if (MainSave.current.vectores[0].length) {
-          for (let i = 0; i < MainSave.current.vectores[0].length; i++) {
+          console.log({qRefs, MainSave});
+          for (let i = 0; i < qRefs.length; i++) {
             qRefs[i].current.value = MainSave.current.vectores[0][i];
             dRefs[i].current.value = MainSave.current.vectores[1][i];
           }

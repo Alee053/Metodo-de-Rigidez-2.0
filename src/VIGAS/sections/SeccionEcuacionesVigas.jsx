@@ -3,6 +3,8 @@ import {VigasContext} from "../VigasMain";
 import Button from "../../components/templates/Button"
 import {getEquations, solveAll} from "../js/Equations";
 
+const {dialog, BrowserWindow} = window.require("@electron/remote")
+
 export default function SeccionEcuacionesVigas() {
 
   const {tempEquations, precision, solvedEquations, MainData, solvedData, maxNum} = useContext(VigasContext)
@@ -13,15 +15,31 @@ export default function SeccionEcuacionesVigas() {
     console.log(tempEquations);
     tryGetEquations()
   }, [maxNum])
+
   useEffect(() => {
     tryGetEquations()
     handleSolve()
   }, [precision])
 
   function handleSolve() {
-    if (!tempEquations.current.length) return;
+    if (!tempEquations.current[0].length) return;
     const aux = JSON.parse(JSON.stringify(tempEquations.current[1]));
-    solvedEquations.current = solveAll(aux, precision);
+    try {
+      solvedEquations.current = solveAll(aux, precision);
+    } catch (error) {
+      const window = BrowserWindow.getFocusedWindow();
+
+      dialog.showMessageBoxSync(window, {
+        title: "Ecuaciones",
+        buttons: ["Ok"],
+        type: "warning",
+        message: 'Ocurrio un error al resolver el sistema de ecuaciones, revise datos : "'
+          + error.message + '"',
+      })
+      ;
+    }
+
+
     setAuxEquations([tempEquations.current[0], solvedEquations.current])
   }
 

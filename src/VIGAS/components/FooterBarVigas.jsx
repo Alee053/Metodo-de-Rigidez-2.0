@@ -55,7 +55,7 @@ export default function Footerbar() {
     }
     if (response === 0) {
       setMainData({bars: [], vectores: [[], []]});
-      tempEquations.current = [];
+      tempEquations.current = [[], []];
     }
   }
 
