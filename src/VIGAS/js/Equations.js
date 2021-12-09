@@ -71,7 +71,6 @@ function solveAll(equations, precision) {
       round(solvedEquations[i][1], precision);
     stringEquations.push(newString);
   }
-  console.log({stringEquations, equations});
   return stringEquations;
 }
 

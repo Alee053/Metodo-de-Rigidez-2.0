@@ -12,7 +12,6 @@ export default function SeccionEcuacionesVigas() {
   const [auxEquations, setAuxEquations] = useState([[], []])
 
   useEffect(() => {
-    console.log(tempEquations);
     tryGetEquations()
   }, [maxNum])
 
@@ -44,7 +43,6 @@ export default function SeccionEcuacionesVigas() {
   }
 
   function tryGetEquations() {
-    console.log(MainData);
     if (!MainData.vectores[0].length) return;
 
     for (let i = 0; i < maxNum; i++)
@@ -67,7 +65,9 @@ export default function SeccionEcuacionesVigas() {
         </ul>
       </div>
 
-      <Button styles={"border-white border-2 h-20 "} func={handleSolve}>Resolver</Button>
+      {auxEquations[0].length ?
+        <Button styles={"border-white border-2 h-20 "} func={handleSolve}>Resolver</Button> :
+        <h1>Datos invalidos o insuficientes</h1>}
 
 
     </div>
