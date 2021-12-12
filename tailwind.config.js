@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         "min-2": "min-content 1fr",
+        "min-6": "max-content max-content max-content max-content max-content max-content",
         "custom-3": "1fr 1em 1.5fr",
       },
       gridTemplateRows: {
