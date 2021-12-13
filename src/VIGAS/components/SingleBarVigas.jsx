@@ -1,19 +1,19 @@
-import { useState, useRef, useContext } from "react";
+import {useContext, useRef, useState} from "react";
 
-import { Bar } from "../js/BarVigas";
+import {Bar} from "../js/BarVigas";
 import Button from "../../components/templates/Button";
 import Input from "../../components/templates/Input";
 
-import { VigasContext } from "../VigasMain";
+import {VigasContext} from "../VigasMain";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleDown} from "@fortawesome/free-solid-svg-icons";
 
-import { round } from "../../js/Utility";
+import {round} from "../../js/Utility";
 
-export default function SingleBarVigas({ bar = new Bar(), id }) {
+export default function SingleBarVigas({bar = new Bar(), id}) {
   //LET PARA EVITAR RERENDER EN EDIT
-  let { setMainData, MainData, precision } = useContext(VigasContext);
+  let {setMainData, MainData, precision} = useContext(VigasContext);
 
   const [E, setE] = useState(bar.E);
   const [I, setI] = useState(bar.I);
@@ -66,10 +66,10 @@ export default function SingleBarVigas({ bar = new Bar(), id }) {
 
     bar = newBar;
     const newBars = MainData.bars;
-    newBars[id] = { E: bar.E, I: bar.I, L: bar.L, num: bar.num };
+    newBars[id] = {E: bar.E, I: bar.I, L: bar.L, num: bar.num};
 
     //EVITA RERENDER
-    MainData = { ...MainData, bars: newBars };
+    MainData = {...MainData, bars: newBars};
   };
 
   function removeBar() {
@@ -80,12 +80,14 @@ export default function SingleBarVigas({ bar = new Bar(), id }) {
   }
 
   return (
-    <div className='bg-white justify-items-center bg-opacity-10 border-2 rounded-2xl p-5 pb-0 grid grid-rows-2 place-items-center self-start relative'>
+    <div
+      className='bg-white justify-items-center bg-opacity-10 border-2 rounded-2xl p-5 pb-0 grid grid-rows-3 place-items-center self-start relative'>
+      <strong className={"place-self-start text-xl"}>Barra {id + 1}</strong>
       <div className=' grid grid-cols-4 place-items-center '>
         <h2 className='w-56 text-center text-xl font-bold'>
           E:{" "}
           {isEdit ? (
-            <Input styles='mx-2 w-40' placeholder={E} refe={inputE} />
+            <Input styles='mx-2 w-40' placeholder={E} refe={inputE}/>
           ) : (
             E
           )}
@@ -93,7 +95,7 @@ export default function SingleBarVigas({ bar = new Bar(), id }) {
         <h2 className='w-56 text-center text-xl font-bold'>
           I:{" "}
           {isEdit ? (
-            <Input styles='mx-2 w-40' placeholder={I} refe={inputI} />
+            <Input styles='mx-2 w-40' placeholder={I} refe={inputI}/>
           ) : (
             I
           )}
@@ -101,7 +103,7 @@ export default function SingleBarVigas({ bar = new Bar(), id }) {
         <h2 className='w-56 text-center text-xl font-bold'>
           L:{" "}
           {isEdit ? (
-            <Input styles='mx-2 w-40' placeholder={L} refe={inputL} />
+            <Input styles='mx-2 w-40' placeholder={L} refe={inputL}/>
           ) : (
             L
           )}
@@ -146,50 +148,50 @@ export default function SingleBarVigas({ bar = new Bar(), id }) {
         </div>
       ) : null}
       <button className='h-full w-full mt-1' onClick={toggleMatrix}>
-        <FontAwesomeIcon className='text-lg' icon={faAngleDown} />
+        <FontAwesomeIcon className='text-lg' icon={faAngleDown}/>
       </button>
 
       {isOpen ? (
         <>
-          <div className='h-0.5 w-full bg-white' />
+          <div className='h-0.5 w-full bg-white'/>
           <div className='p-5'>
             <table>
               <tbody>
-                <tr>
-                  <th></th>
-                  <th>{num[0]}</th>
-                  <th>{num[1]}</th>
-                  <th>{num[2]}</th>
-                  <th>{num[3]}</th>
-                </tr>
-                <tr>
-                  <th>{num[0]}</th>
-                  <td>{round(matrix[num[0]][num[0]], precision)}</td>
-                  <td>{round(matrix[num[0]][num[1]], precision)}</td>
-                  <td>{round(matrix[num[0]][num[2]], precision)}</td>
-                  <td>{round(matrix[num[0]][num[3]], precision)}</td>
-                </tr>
-                <tr>
-                  <th>{num[1]}</th>
-                  <td>{round(matrix[num[1]][num[0]], precision)}</td>
-                  <td>{round(matrix[num[1]][num[1]], precision)}</td>
-                  <td>{round(matrix[num[1]][num[2]], precision)}</td>
-                  <td>{round(matrix[num[1]][num[3]], precision)}</td>
-                </tr>
-                <tr>
-                  <th>{num[2]}</th>
-                  <td>{round(matrix[num[2]][num[0]], precision)}</td>
-                  <td>{round(matrix[num[2]][num[1]], precision)}</td>
-                  <td>{round(matrix[num[2]][num[2]], precision)}</td>
-                  <td>{round(matrix[num[2]][num[3]], precision)}</td>
-                </tr>
-                <tr>
-                  <th>{num[3]}</th>
-                  <td>{round(matrix[num[3]][num[0]], precision)}</td>
-                  <td>{round(matrix[num[3]][num[1]], precision)}</td>
-                  <td>{round(matrix[num[3]][num[2]], precision)}</td>
-                  <td>{round(matrix[num[3]][num[3]], precision)}</td>
-                </tr>
+              <tr>
+                <th></th>
+                <th>{num[0]}</th>
+                <th>{num[1]}</th>
+                <th>{num[2]}</th>
+                <th>{num[3]}</th>
+              </tr>
+              <tr>
+                <th>{num[0]}</th>
+                <td>{round(matrix[num[0]][num[0]], precision)}</td>
+                <td>{round(matrix[num[0]][num[1]], precision)}</td>
+                <td>{round(matrix[num[0]][num[2]], precision)}</td>
+                <td>{round(matrix[num[0]][num[3]], precision)}</td>
+              </tr>
+              <tr>
+                <th>{num[1]}</th>
+                <td>{round(matrix[num[1]][num[0]], precision)}</td>
+                <td>{round(matrix[num[1]][num[1]], precision)}</td>
+                <td>{round(matrix[num[1]][num[2]], precision)}</td>
+                <td>{round(matrix[num[1]][num[3]], precision)}</td>
+              </tr>
+              <tr>
+                <th>{num[2]}</th>
+                <td>{round(matrix[num[2]][num[0]], precision)}</td>
+                <td>{round(matrix[num[2]][num[1]], precision)}</td>
+                <td>{round(matrix[num[2]][num[2]], precision)}</td>
+                <td>{round(matrix[num[2]][num[3]], precision)}</td>
+              </tr>
+              <tr>
+                <th>{num[3]}</th>
+                <td>{round(matrix[num[3]][num[0]], precision)}</td>
+                <td>{round(matrix[num[3]][num[1]], precision)}</td>
+                <td>{round(matrix[num[3]][num[2]], precision)}</td>
+                <td>{round(matrix[num[3]][num[3]], precision)}</td>
+              </tr>
               </tbody>
             </table>
           </div>

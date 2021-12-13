@@ -1,11 +1,11 @@
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       gridTemplateColumns: {
         "min-2": "min-content 1fr",
         "min-6": "max-content max-content max-content max-content max-content max-content",
+        "min-7": "max-content max-content max-content max-content max-content max-content max-content",
         "custom-3": "1fr 1em 1.5fr",
       },
       gridTemplateRows: {

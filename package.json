@@ -44,8 +44,8 @@
   },
   "build": {
     "extends": null,
-    "appId": "com.example.electron-cra",
-    "productName": "React Electron App",
+    "appId": "com.metodo-rigidez",
+    "productName": "Metodo de la Rigidez",
     "files": [
       "dist/**/*",
       "build/**/*",
@@ -54,6 +54,10 @@
     ],
     "directories": {
       "buildResources": "assets"
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "./src/assets/images/logo.ico"
     }
   },
   "eslintConfig": {

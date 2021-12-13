@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 
 import Tab from "../../components/templates/Tab";
 
-export default function NavbarVigas() {
+export default function NavbarPorticos() {
   return (
     <nav className='w-screen bg-gradient-to-l from-indigo-700 to-blue-500 border-b-2 grid grid-cols-min-2 items-center'>
       {/* "LOGO" */}
@@ -12,15 +12,15 @@ export default function NavbarVigas() {
             Metodo de la Rigidez
           </h1>
           <h3 className='xl:text-lg pl-3 pb-1 text-white sm:text-sm uppercase'>
-            Vigas
+            Porticos
           </h3>
         </div>
       </Link>
       <ul>
-        <Tab to='/vigas/barras'>Barras</Tab>
-        <Tab to='/vigas/matriz-total'>Matriz Total</Tab>
-        <Tab to='/vigas/vectores'>Vectores</Tab>
-        <Tab to='/vigas/ecuaciones'>Reacciones y Desplazamientos</Tab>
+        <Tab to='/porticos/barras'>Barras</Tab>
+        <Tab to='/porticos/matriz-total'>Matriz Total</Tab>
+        <Tab to='/porticos/vectores'>Vectores</Tab>
+        <Tab to='/porticos/reacciones'>Reacciones y Desplazamientos</Tab>
       </ul>
     </nav>
   );
