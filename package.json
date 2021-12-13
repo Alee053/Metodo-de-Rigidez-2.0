@@ -58,6 +58,9 @@
     "win": {
       "target": "NSIS",
       "icon": "./src/assets/images/logo.ico"
+    },
+    "nsis": {
+      "oneClick": false
     }
   },
   "eslintConfig": {
