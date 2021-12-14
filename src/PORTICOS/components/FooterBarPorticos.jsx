@@ -18,7 +18,7 @@ export default function Footerbar() {
   function loadData() {
     let path = dialog.showOpenDialogSync(win, {
       title: "Cargar barras",
-      filters: [{name: "JSON", extensions: ["json"]}],
+      filters: [{name: "FRAME", extensions: ["frame"]}],
     });
 
     if (path !== undefined) path = path.toString();
@@ -38,7 +38,7 @@ export default function Footerbar() {
     const save = JSON.stringify(MainSave.current);
     let path = dialog.showSaveDialogSync(win, {
       title: "Guardar barras",
-      filters: [{name: "JSON", extensions: ["json"]}],
+      filters: [{name: "FRAME", extensions: ["frame"]}],
     });
     if (path !== undefined) fs.writeFileSync(path, save);
   }
