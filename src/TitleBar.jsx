@@ -16,7 +16,7 @@ export default function TitleBar() {
   }
 
   return <div id={"titlebar"}
-              className={"fixed top-0 bg-white bg-opacity-10 right-0 left-0 h-9 p-0 m-0 grid grid-cols-min-2-2"}>
+              className={"fixed top-0 bg-white bg-opacity-10 right-0 left-0 h-9 p-0 m-0 grid grid-cols-min-2-2 "}>
     <div id="drag-region" className={"grid grid-cols-2 h-full w-full pl-5"}>
       <strong className={"self-center text-lg uppercase"}>Metodo de la Rigidez</strong>
     </div>

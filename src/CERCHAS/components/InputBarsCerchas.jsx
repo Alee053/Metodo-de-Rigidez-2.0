@@ -73,7 +73,7 @@ export default function InputBarsCerchas() {
 
   return (
     <div className='grid grid-rows-2 gap-2 bg-white bg-opacity-5 p-10 pb-6 rounded-2xl border-2 border-gray-300 '>
-      <div onChange={checkInputs}>
+      <div onChange={checkInputs} className={"grid grid-cols-min-10"}>
         <h2 className='inline-block text-xl'>λx:</h2>
         <Input styles='w-40 inline-block mx-5' refe={inputLx}/>
         <h2 className='inline-block text-xl'>λy:</h2>
@@ -86,7 +86,7 @@ export default function InputBarsCerchas() {
         <Input styles='w-40 inline-block mx-5' refe={inputL}/>
       </div>
       <div className='grid grid-cols-2' onChange={checkInputs}>
-        <div>
+        <div className={"grid grid-cols-min-6"}>
           <h2 className='inline-block text-xl'>Numeracion:</h2>
           <Input styles='w-10 inline-block ml-2' refe={inputNum1}/>
           <Input styles='w-10 inline-block ml-2' refe={inputNum2}/>

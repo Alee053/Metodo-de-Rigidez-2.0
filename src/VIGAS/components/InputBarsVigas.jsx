@@ -1,12 +1,12 @@
-import { useState, useContext, useRef } from "react";
+import {useContext, useRef, useState} from "react";
 
-import { VigasContext } from "../VigasMain";
+import {VigasContext} from "../VigasMain";
 
 import Button from "../../components/templates/Button";
 import Input from "../../components/templates/Input";
 
 export default function InputBarsVigas() {
-  const { MainData, setMainData } = useContext(VigasContext);
+  const {MainData, setMainData} = useContext(VigasContext);
 
   const [isValid, setIsValid] = useState(false);
 
@@ -42,38 +42,38 @@ export default function InputBarsVigas() {
 
     const newMainData = {
       ...MainData,
-      bars: [...MainData.bars, { E: iE, I: iI, L: iL, num: [i1, i2, i3, i4] }],
+      bars: [...MainData.bars, {E: iE, I: iI, L: iL, num: [i1, i2, i3, i4]}],
     };
     setMainData(newMainData);
 
     inputE.current.value =
       inputI.current.value =
-      inputL.current.value =
-      inputNum1.current.value =
-      inputNum2.current.value =
-      inputNum3.current.value =
-      inputNum4.current.value =
-        "";
+        inputL.current.value =
+          inputNum1.current.value =
+            inputNum2.current.value =
+              inputNum3.current.value =
+                inputNum4.current.value =
+                  "";
     setIsValid(false);
   }
 
   return (
     <div className='grid grid-rows-2 gap-2 bg-white bg-opacity-5 p-10 pb-6 rounded-2xl border-2 border-gray-300 '>
-      <div onChange={checkInputs}>
+      <div onChange={checkInputs} className={"grid grid-cols-min-6"}>
         <h2 className='inline-block text-xl'>E:</h2>
-        <Input styles='w-40 inline-block mx-5' refe={inputE} />
+        <Input styles='w-40 inline-block mx-5' refe={inputE}/>
         <h2 className='inline-block text-xl'>I:</h2>
-        <Input styles='w-40 inline-block mx-5' refe={inputI} />
+        <Input styles='w-40 inline-block mx-5' refe={inputI}/>
         <h2 className='inline-block text-xl'>L:</h2>
-        <Input styles='w-40 inline-block mx-5' refe={inputL} />
+        <Input styles='w-40 inline-block mx-5' refe={inputL}/>
       </div>
       <div className='grid grid-cols-2' onChange={checkInputs}>
-        <div>
+        <div className={"grid grid-cols-min-6"}>
           <h2 className='inline-block text-xl'>Numeracion:</h2>
-          <Input styles='w-10 inline-block ml-2' refe={inputNum1} />
-          <Input styles='w-10 inline-block ml-2' refe={inputNum2} />
-          <Input styles='w-10 inline-block ml-2' refe={inputNum3} />
-          <Input styles='w-10 inline-block ml-2' refe={inputNum4} />
+          <Input styles='w-10 inline-block ml-2' refe={inputNum1}/>
+          <Input styles='w-10 inline-block ml-2' refe={inputNum2}/>
+          <Input styles='w-10 inline-block ml-2' refe={inputNum3}/>
+          <Input styles='w-10 inline-block ml-2' refe={inputNum4}/>
         </div>
         <Button
           styles='w-min justify-self-center border-2'

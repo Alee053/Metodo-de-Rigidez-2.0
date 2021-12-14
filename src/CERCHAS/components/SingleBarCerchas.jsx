@@ -94,8 +94,8 @@ export default function SingleBarCerchas({bar = new Bar(), id}) {
     <div
       className='bg-white justify-items-center bg-opacity-10 border-2 rounded-2xl p-5 pl-10 pb-0 grid grid-rows-3 place-items-center justify-self-center self-start relative w-max'>
       <strong className={"place-self-start text-xl"}>Barra {id + 1}</strong>
-      <div className=' grid grid-cols-min-6 gap-20 place-items-center '>
-        <h2 className='text-center text-xl font-bold'>
+      <div className='grid grid-cols-min-6 gap-20 place-items-center'>
+        <h2 className='text-xl font-bold'>
           λx:{" "}
           {isEdit ? (
             <Input styles='mx-2 w-40' placeholder={lx} refe={inputLx}/>

@@ -9,6 +9,8 @@ module.exports = {
         "min-3-3": "min-content min-content min-content",
         "min-6": "max-content max-content max-content max-content max-content max-content",
         "min-7": "max-content max-content max-content max-content max-content max-content max-content",
+        "min-10": "max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content",
+        "max-12": "repeat(12,max-content)",
         "custom-3": "1fr 1em 1.5fr",
       },
       gridTemplateRows: {
