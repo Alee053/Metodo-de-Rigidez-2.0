@@ -1,10 +1,11 @@
 {
   "name": "metodo-rigidez",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.0",
     "@electron/remote": "^2.0.1",
+    "@fluentui/react-icons": "^2.0.153-canary.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
@@ -12,6 +13,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "bootstrap-icons": "^1.7.2",
     "electron-is-dev": "^2.0.0",
     "nerdamer": "^1.1.13",
     "react": "^17.0.2",
@@ -57,7 +59,7 @@
     },
     "win": {
       "target": "NSIS",
-      "icon": "./src/assets/images/logo.ico"
+      "icon": "./src/assets/images/logo (2).ico"
     },
     "nsis": {
       "oneClick": false

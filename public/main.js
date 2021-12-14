@@ -5,19 +5,24 @@ const isDev = require("electron-is-dev");
 
 require("@electron/remote/main").initialize();
 
+
 function createWindow() {
-  // Create the browser window.
   const win = new BrowserWindow({
     width: 1280,
     height: 720,
+    frame: false,
+    backgroundColor: "##2e3133",
     webPreferences: {
       nodeIntegration: true,
+      nodeIntegrationInSubFrames: true,
+      nodeIntegrationInWorker: true,
       enableRemoteModule: true,
       contextIsolation: false,
     },
   });
-  win.setMenu(null)
+  //win.setMenu(null)
   require("@electron/remote/main").enable(win.webContents);
+
 
   win.loadURL(
     isDev
@@ -26,7 +31,10 @@ function createWindow() {
   );
 }
 
-app.on("ready", createWindow);
+app.on("ready", () => {
+  createWindow()
+
+});
 
 app.on("window-all-closed", function () {
   if (process.platform !== "darwin") {
