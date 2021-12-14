@@ -1,5 +1,17 @@
 function round(num, pres) {
-  return +(Math.round(num + ("e+" + pres)) + ("e-" + pres));
+  num = num.toString();
+  let term = "", ini = "";
+  let e = false;
+  for (let i of num) {
+    if (i === 'e' || e) {
+      e = true;
+      term += i;
+    } else {
+      ini += i;
+    }
+  }
+  ini = parseFloat(ini);
+  return (+(Math.round(ini + ("e+" + pres)) + ("e-" + pres))).toString() + term;
 }
 
 function solveTotalMatrix(matrixArray, maxNum) {
@@ -18,4 +30,4 @@ function solveTotalMatrix(matrixArray, maxNum) {
   return totalMatrix;
 }
 
-export { round, solveTotalMatrix };
+export {round, solveTotalMatrix};

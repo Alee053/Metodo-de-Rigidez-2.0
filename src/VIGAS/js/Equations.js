@@ -65,12 +65,14 @@ function solveAll(equations, precision) {
   const stringEquations = [];
 
   for (let i = 0; i < solvedEquations.length; i++) {
+    console.log(solvedEquations[i][1]);
     const newString =
       solvedEquations[i][0] +
       "=" +
       round(solvedEquations[i][1], precision);
     stringEquations.push(newString);
   }
+  console.log(stringEquations);
   return stringEquations;
 }
 
