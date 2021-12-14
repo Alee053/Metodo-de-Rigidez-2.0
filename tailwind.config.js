@@ -6,6 +6,7 @@ module.exports = {
         "min-2": "min-content 1fr",
         "min-2-2": "1fr min-content",
         "min-3": "min-content min-content 1fr",
+        "min-3-3": "min-content min-content min-content",
         "min-6": "max-content max-content max-content max-content max-content max-content",
         "min-7": "max-content max-content max-content max-content max-content max-content max-content",
         "custom-3": "1fr 1em 1.5fr",

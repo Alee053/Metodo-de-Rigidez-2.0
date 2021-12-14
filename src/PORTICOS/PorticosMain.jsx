@@ -42,7 +42,6 @@ export default function PorticosMain() {
   }, [MainData])
 
   useEffect(() => {
-    console.log(solvedData);
   }, [solvedData])
 
   //RESUELVE LAS BARRAS

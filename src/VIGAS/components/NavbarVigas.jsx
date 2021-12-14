@@ -15,11 +15,11 @@ export default function NavbarVigas() {
 
     const options = {
       title: "Metodo de Rigidez",
-      buttons: ["Confirmar", "Cancelar"],
+      buttons: ["Cancelar", "Confirmar"],
       message: "¿Seguro que quieres volver al menu principal? (Se borraran los datos no guardados)",
     };
     const response = dialog.showMessageBoxSync(window, options);
-    if (response === 0) history.push("/home");
+    if (response === 1) history.push("/home");
   }
 
   return (

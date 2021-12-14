@@ -48,12 +48,12 @@ export default function Footerbar() {
     if (!skip) {
       const options = {
         title: "Metodo de Rigidez",
-        buttons: ["Confirmar", "Cancelar"],
+        buttons: ["Cancelar", "Confirmar"],
         message: "¿Seguro que quieres borrar todas las barras?",
       };
       response = dialog.showMessageBoxSync(win, options);
     }
-    if (response === 0) {
+    if (response === 1) {
       setMainData({bars: [], vectores: [[], []]});
       tempEquations.current = [[], []];
     }
@@ -67,7 +67,7 @@ export default function Footerbar() {
   return (
     <nav
       className='w-screen bg-gradient-to-l from-indigo-700 to-blue-500 grid grid-cols-2 items-center h-15 border-t-2'>
-      <div className='inline-block'>
+      <div className='grid grid-cols-min-3-3 items-center'>
         <h2 className='text-lg inline-block mx-5'>Precision:</h2>
         <Input styles='w-20' placeholder={precision} refe={inputPres}/>
         <Button func={changePrecision}>Aplicar</Button>
