@@ -1,7 +1,9 @@
 {
   "name": "metodo-rigidez",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
+  "author": "Ale Castro",
+  "description": "Metodo de la Rigidez para vigas, cerchas y porticos",
   "dependencies": {
     "@craco/craco": "^6.4.0",
     "@electron/remote": "^2.0.1",
