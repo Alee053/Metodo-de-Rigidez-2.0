@@ -1,2 +1,2 @@
-# Metodo-de-Rigidez-React-Electron-2.0
+# Metodo-de-Rigidez-React-Electron
 PROGRAMA METODO DE RIGIDEZ RE-ESCRITO, WIP
